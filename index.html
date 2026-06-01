@@ -177,16 +177,28 @@
     }
 
     .hero {
-      background:
-        linear-gradient(90deg, rgba(8, 38, 74, 0.94), rgba(8, 38, 74, 0.78)),
-        url("gnbs-flyer.png") center / cover;
+      background: var(--navy);
       color: var(--paper);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -32% 36%;
+      height: 56%;
+      background: rgba(79, 159, 17, 0.22);
+      transform: rotate(-7deg);
+      pointer-events: none;
     }
 
     .hero-grid {
       min-height: calc(100vh - 124px);
       align-items: center;
       padding: 68px 0 54px;
+      position: relative;
+      z-index: 1;
     }
 
     .hero-copy {
@@ -272,14 +284,58 @@
       background: rgba(255, 255, 255, 0.94);
     }
 
-    .hero-flyer {
-      width: min(410px, 100%);
-      align-self: flex-end;
-      margin-bottom: -96px;
-      border: 6px solid rgba(255, 255, 255, 0.85);
+    .hero-visual {
+      width: min(430px, 100%);
+      justify-self: end;
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.1);
       box-shadow: var(--shadow);
-      overflow: hidden;
+    }
+
+    .bin-service-card {
+      display: grid;
+      gap: 16px;
+      padding: 24px;
+      border-radius: var(--radius);
+      background: var(--paper);
+      color: var(--navy);
+    }
+
+    .bin-service-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--soft);
+    }
+
+    .bin-service-icon {
+      width: 54px;
+      height: 54px;
+      flex: 0 0 auto;
+      border-radius: var(--radius);
+      display: grid;
+      place-items: center;
+      background: var(--leaf);
+      color: var(--green);
+      font-size: 1.8rem;
+      font-weight: 900;
+    }
+
+    .bin-service-row strong {
+      display: block;
+      color: var(--navy);
+      font-size: 1.1rem;
+    }
+
+    .bin-service-row span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
     section {
@@ -484,6 +540,36 @@
       box-shadow: var(--shadow);
     }
 
+    .signup-panel {
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      min-height: 320px;
+      text-align: center;
+    }
+
+    .signup-panel h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .signup-panel p {
+      max-width: 520px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .signup-button {
+      width: min(100%, 520px);
+      min-height: 68px;
+      margin: 4px auto 0;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+    }
+
     form {
       display: grid;
       gap: 14px;
@@ -564,9 +650,9 @@
         min-height: auto;
       }
 
-      .hero-flyer {
+      .hero-visual {
         width: min(360px, 100%);
-        margin: 0 auto -88px;
+        margin: 0 auto;
       }
 
       .grid-4,
@@ -610,9 +696,7 @@
       }
 
       .hero {
-        background:
-          linear-gradient(180deg, rgba(8, 38, 74, 0.96), rgba(8, 38, 74, 0.82)),
-          url("gnbs-flyer.png") center top / cover;
+        background: var(--navy);
       }
     }
   </style>
@@ -664,9 +748,31 @@
             <div class="proof-item"><strong>Local</strong>Darlington service</div>
           </div>
         </div>
-        <a class="hero-flyer" href="gnbs-flyer.png" aria-label="Open Good Neighbor Bin Service flyer">
-          <img src="gnbs-flyer.png" alt="Good Neighbor Bin Service flyer with pricing and contact details">
-        </a>
+        <div class="hero-visual" aria-label="Weekly bin service summary">
+          <div class="bin-service-card">
+            <div class="bin-service-row">
+              <div class="bin-service-icon">1</div>
+              <div>
+                <strong>We take them out</strong>
+                <span>Trash and recycling bins moved to the curb before pickup.</span>
+              </div>
+            </div>
+            <div class="bin-service-row">
+              <div class="bin-service-icon">2</div>
+              <div>
+                <strong>We bring them back</strong>
+                <span>Bins returned after collection, every week.</span>
+              </div>
+            </div>
+            <div class="bin-service-row">
+              <div class="bin-service-icon">$</div>
+              <div>
+                <strong>Starting at $20/month</strong>
+                <span>Simple local service for up to 2 bins.</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -778,13 +884,17 @@
       <div class="container">
         <div class="section-heading center">
           <h2>Start your route request</h2>
-          <p>Call, text, email, or use the quick form. We will follow up to confirm service availability, route timing, and next steps.</p>
+          <p>Use the quick form to sign up. You can still call, text, or email us with questions before getting started.</p>
         </div>
         <div class="contact-grid">
           <div class="contact-methods">
             <div class="method">
-              <strong>Call or text</strong>
+              <strong>Call</strong>
               <a href="tel:4015007436">401-500-7436</a>
+            </div>
+            <div class="method">
+              <strong>Text</strong>
+              <a href="sms:4015007436?&body=Hi%2C%20I%27m%20interested%20in%20Good%20Neighbor%20Bin%20Service.">Text us now</a>
             </div>
             <div class="method">
               <strong>Email</strong>
@@ -794,69 +904,17 @@
               <strong>Service area</strong>
               <span>Darlington and Pawtucket, Rhode Island</span>
             </div>
+            <div class="actions contact-buttons">
+              <a class="btn btn-secondary" href="tel:4015007436">Call</a>
+              <a class="btn btn-primary" href="sms:4015007436?&body=Hi%2C%20I%27m%20interested%20in%20Good%20Neighbor%20Bin%20Service.">Text</a>
+              <a class="btn btn-outline" href="mailto:goodneighborbinservice@gmail.com?subject=Good%20Neighbor%20Bin%20Service%20Inquiry">Email</a>
+            </div>
           </div>
 
-          <div class="form-panel">
-            <form id="leadForm">
-              <div class="form-row">
-                <label>
-                  Name
-                  <input name="name" autocomplete="name" required>
-                </label>
-                <label>
-                  Phone
-                  <input name="phone" autocomplete="tel" required>
-                </label>
-              </div>
-              <div class="form-row">
-                <label>
-                  Email
-                  <input type="email" name="email" autocomplete="email">
-                </label>
-                <label>
-                  Pickup day
-                  <select name="pickupDay">
-                    <option value="">Not sure yet</option>
-                    <option>Monday</option>
-                    <option>Tuesday</option>
-                    <option>Wednesday</option>
-                    <option>Thursday</option>
-                    <option>Friday</option>
-                    <option>Saturday</option>
-                  </select>
-                </label>
-              </div>
-              <label>
-                Address
-                <input name="address" autocomplete="street-address" required>
-              </label>
-              <div class="form-row">
-                <label>
-                  Plan
-                  <select name="plan">
-                    <option>Standard Plan - $20/month</option>
-                    <option>Senior Neighbor Plan - $15/month</option>
-                    <option>Extra bin or yard waste quote</option>
-                  </select>
-                </label>
-                <label>
-                  Number of bins
-                  <select name="bins">
-                    <option>1</option>
-                    <option selected>2</option>
-                    <option>3</option>
-                    <option>4+</option>
-                  </select>
-                </label>
-              </div>
-              <label>
-                Notes
-                <textarea name="notes" placeholder="Gate info, where bins are stored, special instructions"></textarea>
-              </label>
-              <button class="btn btn-primary" type="submit">Send route request</button>
-              <p class="note">We will use your request details only to follow up about service.</p>
-              <div id="formStatus" class="status" role="status" aria-live="polite"></div>
-            </form>
+          <div class="form-panel signup-panel">
+            <h3>Ready to join the route?</h3>
+            <p>Our quick form sends your request straight to Good Neighbor Bin Service so we can follow up and confirm availability.</p>
+            <a class="btn btn-primary signup-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform?usp=dialog" target="_blank" rel="noopener">Sign Up With Our Quick Form</a>
           </div>
         </div>
       </div>
@@ -873,67 +931,5 @@
     </div>
   </footer>
 
-  <script>
-    const CONTACT_CONFIG = {
-      phone: "4015007436",
-      email: "goodneighborbinservice@gmail.com",
-      googleFormUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform?usp=dialog",
-      googleFormPrefill: {
-        name: "",
-        phone: "",
-        email: "",
-        address: "",
-        pickupDay: "",
-        plan: "",
-        bins: "",
-        notes: ""
-      }
-    };
-
-    const form = document.querySelector("#leadForm");
-    const status = document.querySelector("#formStatus");
-
-    function buildDetails(data) {
-      return [
-        `Name: ${data.name}`,
-        `Phone: ${data.phone}`,
-        `Email: ${data.email || "Not provided"}`,
-        `Address: ${data.address}`,
-        `Pickup day: ${data.pickupDay || "Not sure yet"}`,
-        `Plan: ${data.plan}`,
-        `Bins: ${data.bins}`,
-        `Notes: ${data.notes || "None"}`
-      ].join("\n");
-    }
-
-    function buildGoogleFormUrl(data) {
-      const url = new URL(CONTACT_CONFIG.googleFormUrl);
-      Object.entries(CONTACT_CONFIG.googleFormPrefill).forEach(([field, entryId]) => {
-        if (entryId && data[field]) {
-          url.searchParams.set(entryId, data[field]);
-        }
-      });
-      return url.toString();
-    }
-
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = Object.fromEntries(new FormData(form).entries());
-      const savedLeads = JSON.parse(localStorage.getItem("gnbs_leads") || "[]");
-      savedLeads.push({ ...data, createdAt: new Date().toISOString() });
-      localStorage.setItem("gnbs_leads", JSON.stringify(savedLeads.slice(-25)));
-
-      if (CONTACT_CONFIG.googleFormUrl) {
-        window.open(buildGoogleFormUrl(data), "_blank", "noopener");
-        status.textContent = "Opening the route request form now.";
-        return;
-      }
-
-      const subject = encodeURIComponent("New Good Neighbor Bin Service route request");
-      const body = encodeURIComponent(buildDetails(data));
-      window.location.href = `mailto:${CONTACT_CONFIG.email}?subject=${subject}&body=${body}`;
-      status.textContent = "Your email app is opening with the request details.";
-    });
-  </script>
 </body>
 </html>
