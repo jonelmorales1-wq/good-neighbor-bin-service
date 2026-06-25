@@ -386,7 +386,7 @@
 
     .payment-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
       align-items: stretch;
     }
@@ -414,13 +414,22 @@
       color: var(--muted);
     }
 
-    .payment-card .btn {
+    .payment-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
       width: 100%;
       margin-top: auto;
+      border-radius: var(--radius);
+      background: var(--leaf);
+      color: var(--navy);
+      font-weight: 900;
+      border: 1px solid rgba(79, 159, 17, 0.28);
     }
 
     .payment-note,
-    .confirmation-panel {
+    .flow-panel {
       border-radius: var(--radius);
       border: 1px solid rgba(79, 159, 17, 0.28);
       background: #f5fbef;
@@ -434,30 +443,55 @@
       text-align: center;
     }
 
-    .confirmation-panel {
+    .flow-panel {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-      align-items: center;
+      gap: 14px;
       margin-top: 22px;
       padding: 24px;
     }
 
-    .confirmation-panel h3 {
+    .flow-panel h3 {
       margin: 0 0 6px;
       color: var(--navy);
       font-size: 1.35rem;
     }
 
-    .confirmation-panel p {
+    .flow-panel p {
       margin: 0;
       color: #334155;
     }
 
-    .confirmation-panel .btn {
-      min-width: 260px;
-      min-height: 60px;
-      font-size: 1.05rem;
+    .flow-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: flow-step;
+    }
+
+    .flow-list li {
+      counter-increment: flow-step;
+      position: relative;
+      padding-left: 42px;
+      color: #334155;
+      font-weight: 700;
+    }
+
+    .flow-list li::before {
+      content: counter(flow-step);
+      position: absolute;
+      left: 0;
+      top: -2px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--paper);
+      display: grid;
+      place-items: center;
+      font-size: 0.9rem;
+      font-weight: 900;
     }
 
     .trust-grid {
@@ -738,11 +772,6 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .confirmation-panel {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
       section {
         padding: 60px 0;
       }
@@ -760,11 +789,6 @@
       .form-row {
         display: grid;
         grid-template-columns: 1fr;
-      }
-
-      .confirmation-panel .btn {
-        min-width: 0;
-        width: 100%;
       }
 
       .nav-inner {
@@ -813,7 +837,7 @@
         </div>
         <div class="actions">
           <a class="btn btn-outline" href="sms:4015007436?&body=Hi%2C%20I%27m%20interested%20in%20Good%20Neighbor%20Bin%20Service.">Text</a>
-          <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform?usp=dialog" target="_blank" rel="noopener">Sign up</a>
+          <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform" target="_blank" rel="noopener">Sign up</a>
         </div>
       </div>
     </nav>
@@ -827,7 +851,7 @@
           <h1 id="hero-title">Never forget trash day again.</h1>
           <p class="hero-lede">We take your trash and recycling bins to the curb before pickup and bring them back after collection, every week.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform?usp=dialog" target="_blank" rel="noopener">Get started today</a>
+            <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform" target="_blank" rel="noopener">Get started today</a>
             <a class="btn btn-secondary" href="tel:4015007436">Call 401-500-7436</a>
             <a class="btn btn-outline" href="mailto:goodneighborbinservice@gmail.com?subject=Good%20Neighbor%20Bin%20Service%20Inquiry&body=Hi%2C%20I%27m%20interested%20in%20weekly%20bin%20service.">Email us</a>
           </div>
@@ -940,8 +964,8 @@
     <section id="payment" class="band">
       <div class="container">
         <div class="section-heading center">
-          <h2>Ready To Start Service?</h2>
-          <p>Choose your payment method below. Once payment is sent, please complete the quick payment confirmation form so we can match your payment to your account.</p>
+          <h2>Accepted Payment Methods</h2>
+          <p>We currently accept Cash App, Venmo, and cash.</p>
         </div>
 
         <div class="pricing-grid">
@@ -962,41 +986,38 @@
           </article>
         </div>
 
-        <div class="payment-note">Payment is due before service begins. We will confirm your service start date after payment is received.</div>
+        <div class="payment-note">Payment is collected after we confirm your service and start date. Please choose your preferred payment method when filling out the quick sign-up form.</div>
 
-        <div class="payment-grid" aria-label="Payment options">
-          <article class="payment-card">
-            <h3>Venmo</h3>
-            <p>Use Venmo for a fast digital payment before your service begins.</p>
-            <a class="btn btn-secondary" href="https://venmo.com/u/GNBService" target="_blank" rel="noopener">Pay With Venmo</a>
-          </article>
-
+        <div class="payment-grid" aria-label="Accepted payment methods">
           <article class="payment-card">
             <h3>Cash App</h3>
-            <p>Use Cash App for a quick digital payment from your phone.</p>
-            <a class="btn btn-secondary" href="https://cash.app/$GNBService" target="_blank" rel="noopener">Pay With Cash App</a>
+            <p>Choose Cash App in the sign-up form if this is your preferred payment method.</p>
+            <div class="payment-badge" aria-label="Cash App accepted">Cash App</div>
           </article>
 
           <article class="payment-card">
-            <h3>Zelle</h3>
-            <p>Zelle payments can be sent to:</p>
-            <p><a href="mailto:goodneighborbinservice@gmail.com">goodneighborbinservice@gmail.com</a><br>or<br>PASTE ZELLE PHONE/EMAIL HERE</p>
-            <a class="btn btn-outline" href="mailto:goodneighborbinservice@gmail.com?subject=GNBS%20Zelle%20Payment%20Sent&body=Hi%2C%20I%20sent%20my%20GNBS%20payment%20through%20Zelle.%20My%20name%20is%3A%20">Email Us After Zelle Payment</a>
+            <h3>Venmo</h3>
+            <p>Choose Venmo in the sign-up form if this is your preferred payment method.</p>
+            <div class="payment-badge" aria-label="Venmo accepted">Venmo</div>
           </article>
 
           <article class="payment-card">
             <h3>Cash</h3>
-            <p>Cash payments can be arranged by call or text before service begins.</p>
-            <a class="btn btn-primary" href="sms:4015007436?&body=Hi%2C%20I%E2%80%99d%20like%20to%20pay%20cash%20for%20Good%20Neighbor%20Bin%20Service.">Text Us About Cash Payment</a>
+            <p>Cash can be arranged directly after we confirm your route and start date.</p>
+            <div class="payment-badge" aria-label="Cash accepted">Cash</div>
           </article>
         </div>
 
-        <div class="confirmation-panel">
-          <div>
-            <h3>Required After Payment</h3>
-            <p>The website cannot automatically know if someone paid by Venmo, Cash App, Zelle, or cash unless we use integrations later. For now, this confirmation form is the payment tracker.</p>
-          </div>
-          <a class="btn btn-primary" href="PASTE_PAYMENT_CONFIRMATION_GOOGLE_FORM_LINK_HERE" target="_blank" rel="noopener">Confirm My Payment</a>
+        <div class="flow-panel">
+          <h3>How Getting Started Works</h3>
+          <ol class="flow-list">
+            <li>Customer visits the website.</li>
+            <li>Customer clicks Sign Up.</li>
+            <li>Customer fills out the Google Form.</li>
+            <li>Customer chooses a preferred payment method in the form.</li>
+            <li>GNBS confirms service area and start date.</li>
+            <li>GNBS sends payment instructions directly by text or email.</li>
+          </ol>
         </div>
       </div>
     </section>
@@ -1067,7 +1088,7 @@
           <div class="form-panel signup-panel">
             <h3>Ready to join the route?</h3>
             <p>Our quick form sends your request straight to Good Neighbor Bin Service so we can follow up and confirm availability.</p>
-            <a class="btn btn-primary signup-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform?usp=dialog" target="_blank" rel="noopener">Sign Up With Our Quick Form</a>
+            <a class="btn btn-primary signup-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform" target="_blank" rel="noopener">Sign Up With Our Quick Form</a>
           </div>
         </div>
       </div>
