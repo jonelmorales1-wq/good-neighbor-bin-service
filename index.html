@@ -384,6 +384,82 @@
       align-items: stretch;
     }
 
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .payment-card {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+      min-height: 260px;
+      padding: 22px;
+      border: 1px solid rgba(219, 228, 239, 0.95);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 12px 28px rgba(8, 38, 74, 0.08);
+    }
+
+    .payment-card h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 1.18rem;
+    }
+
+    .payment-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .payment-card .btn {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .payment-note,
+    .confirmation-panel {
+      border-radius: var(--radius);
+      border: 1px solid rgba(79, 159, 17, 0.28);
+      background: #f5fbef;
+      color: var(--navy);
+    }
+
+    .payment-note {
+      margin: 22px 0;
+      padding: 18px 20px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .confirmation-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      margin-top: 22px;
+      padding: 24px;
+    }
+
+    .confirmation-panel h3 {
+      margin: 0 0 6px;
+      color: var(--navy);
+      font-size: 1.35rem;
+    }
+
+    .confirmation-panel p {
+      margin: 0;
+      color: #334155;
+    }
+
+    .confirmation-panel .btn {
+      min-width: 260px;
+      min-height: 60px;
+      font-size: 1.05rem;
+    }
+
     .trust-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -657,8 +733,14 @@
 
       .grid-4,
       .pricing-grid,
+      .payment-grid,
       .trust-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .confirmation-panel {
+        grid-template-columns: 1fr;
+        text-align: center;
       }
 
       section {
@@ -673,10 +755,16 @@
       .hero-proof,
       .grid-4,
       .pricing-grid,
+      .payment-grid,
       .trust-grid,
       .form-row {
         display: grid;
         grid-template-columns: 1fr;
+      }
+
+      .confirmation-panel .btn {
+        min-width: 0;
+        width: 100%;
       }
 
       .nav-inner {
@@ -719,6 +807,7 @@
         <div class="nav-links" aria-label="Page sections">
           <a href="#how">How it works</a>
           <a href="#pricing">Pricing</a>
+          <a href="#payment">Payment</a>
           <a href="#why">Why us</a>
           <a href="#contact">Contact</a>
         </div>
@@ -844,6 +933,70 @@
               <li>One-time price based on amount</li>
             </ul>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="payment" class="band">
+      <div class="container">
+        <div class="section-heading center">
+          <h2>Ready To Start Service?</h2>
+          <p>Choose your payment method below. Once payment is sent, please complete the quick payment confirmation form so we can match your payment to your account.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card featured">
+            <h3>Standard Plan</h3>
+            <div class="price">$20 <span>/ month</span></div>
+            <p>Weekly trash and recycling bin service for up to 2 bins.</p>
+          </article>
+          <article class="price-card">
+            <h3>Senior Plan</h3>
+            <div class="price">$15 <span>/ month</span></div>
+            <p>Discounted monthly service for senior neighbors.</p>
+          </article>
+          <article class="price-card">
+            <h3>Extra Bins</h3>
+            <div class="price">+$5 <span>/ each</span></div>
+            <p>For each additional bin after the first 2 bins.</p>
+          </article>
+        </div>
+
+        <div class="payment-note">Payment is due before service begins. We will confirm your service start date after payment is received.</div>
+
+        <div class="payment-grid" aria-label="Payment options">
+          <article class="payment-card">
+            <h3>Venmo</h3>
+            <p>Use Venmo for a fast digital payment before your service begins.</p>
+            <a class="btn btn-secondary" href="https://venmo.com/u/GNBService" target="_blank" rel="noopener">Pay With Venmo</a>
+          </article>
+
+          <article class="payment-card">
+            <h3>Cash App</h3>
+            <p>Use Cash App for a quick digital payment from your phone.</p>
+            <a class="btn btn-secondary" href="https://cash.app/$GNBService" target="_blank" rel="noopener">Pay With Cash App</a>
+          </article>
+
+          <article class="payment-card">
+            <h3>Zelle</h3>
+            <p>Zelle payments can be sent to:</p>
+            <p><a href="mailto:goodneighborbinservice@gmail.com">goodneighborbinservice@gmail.com</a><br>or<br>PASTE ZELLE PHONE/EMAIL HERE</p>
+            <a class="btn btn-outline" href="mailto:goodneighborbinservice@gmail.com?subject=GNBS%20Zelle%20Payment%20Sent&body=Hi%2C%20I%20sent%20my%20GNBS%20payment%20through%20Zelle.%20My%20name%20is%3A%20">Email Us After Zelle Payment</a>
+          </article>
+
+          <article class="payment-card">
+            <h3>Cash</h3>
+            <p>Cash payments can be arranged by call or text before service begins.</p>
+            <a class="btn btn-primary" href="sms:4015007436?&body=Hi%2C%20I%E2%80%99d%20like%20to%20pay%20cash%20for%20Good%20Neighbor%20Bin%20Service.">Text Us About Cash Payment</a>
+          </article>
+        </div>
+
+        <div class="confirmation-panel">
+          <div>
+            <h3>Required After Payment</h3>
+            <p>The website cannot automatically know if someone paid by Venmo, Cash App, Zelle, or cash unless we use integrations later. For now, this confirmation form is the payment tracker.</p>
+          </div>
+          <a class="btn btn-primary" href="PASTE_PAYMENT_CONFIRMATION_GOOGLE_FORM_LINK_HERE" target="_blank" rel="noopener">Confirm My Payment</a>
         </div>
       </div>
     </section>
