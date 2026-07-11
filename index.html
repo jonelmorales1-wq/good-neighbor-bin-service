@@ -682,6 +682,70 @@
       font-size: clamp(1rem, 2vw, 1.3rem);
     }
 
+    .signup-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      padding: 20px;
+      overflow-y: auto;
+      background: rgba(3, 20, 47, 0.72);
+    }
+
+    .signup-modal.is-open {
+      display: grid;
+      align-items: start;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .signup-modal-card {
+      width: min(100%, 860px);
+      margin: 24px auto;
+      padding: clamp(20px, 4vw, 32px);
+      border-radius: var(--radius-lg);
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .signup-modal-header {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .signup-modal-close {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 auto;
+      border: 2px solid rgba(2, 32, 69, 0.14);
+      border-radius: 50%;
+      color: var(--navy);
+      background: #f8fafc;
+      font-size: 1.5rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .signup-modal-card h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.6rem, 4vw, 2.35rem);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .signup-modal-card p {
+      max-width: 620px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
     .native-signup {
       align-content: start;
       min-height: 0;
@@ -910,7 +974,7 @@
         </div>
         <div class="actions">
           <a class="btn btn-outline" href="sms:4015007436?&body=Hi%2C%20I%27m%20interested%20in%20Good%20Neighbor%20Bin%20Service.">Text</a>
-          <a class="btn btn-primary" href="#signup">Sign up</a>
+          <a class="btn btn-primary" href="#signup" data-open-signup>Sign up</a>
         </div>
       </div>
     </nav>
@@ -924,7 +988,7 @@
           <h1 id="hero-title">Never forget trash day again.</h1>
           <p class="hero-lede">We take your trash and recycling bins to the curb before pickup and bring them back after collection, every week.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="#signup">Get started today</a>
+            <a class="btn btn-primary" href="#signup" data-open-signup>Get started today</a>
             <a class="btn btn-secondary" href="tel:4015007436">Call 401-500-7436</a>
             <a class="btn btn-outline" href="mailto:goodneighborbinservice@gmail.com?subject=Good%20Neighbor%20Bin%20Service%20Inquiry&body=Hi%2C%20I%27m%20interested%20in%20weekly%20bin%20service.">Email us</a>
           </div>
@@ -1140,10 +1204,27 @@
             </div>
           </div>
 
-          <div class="form-panel signup-panel native-signup" id="signup">
+          <div class="form-panel signup-panel">
             <h3>Ready to join the route?</h3>
             <p>Our quick form sends your request straight to Good Neighbor Bin Service so we can follow up and confirm availability.</p>
-            <p class="required-note">Fields marked with * are required. No payment is due until GNBS confirms your service and start date.</p>
+            <p>No payment is due until GNBS confirms your service area and start date.</p>
+            <a class="btn btn-primary signup-button" href="#signup" data-open-signup>Open Signup Form</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="signup-modal" id="signup" role="dialog" aria-modal="true" aria-labelledby="signup-title">
+    <div class="signup-modal-card native-signup">
+      <div class="signup-modal-header">
+        <div>
+          <h3 id="signup-title">Ready to join the route?</h3>
+          <p>Our quick form sends your request straight to Good Neighbor Bin Service so we can follow up and confirm availability.</p>
+          <p class="required-note">Fields marked with * are required. No payment is due until GNBS confirms your service and start date.</p>
+        </div>
+        <button class="signup-modal-close" type="button" data-close-signup aria-label="Close signup form">&times;</button>
+      </div>
             <form class="signup-form" id="gnbs-signup-form" novalidate>
               <input class="honeypot" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
 
@@ -1210,14 +1291,6 @@
                   </select>
                 </label>
               </div>
-              <label>Payment preference *
-                <select name="payment_preference" required>
-                  <option value="">Choose a method</option>
-                  <option>Cash App</option>
-                  <option>Venmo</option>
-                  <option>Cash</option>
-                </select>
-              </label>
               <div class="price-preview" id="signup-price-preview">Estimated monthly price appears after you choose a plan.</div>
 
               <div class="form-section-title">Bin Instructions</div>
@@ -1237,15 +1310,22 @@
                 <textarea name="additional_notes" maxlength="1500" placeholder="Anything else you want GNBS to know"></textarea>
               </label>
 
+              <div class="form-section-title">Payment Preference</div>
+              <label>Preferred payment method *
+                <select name="payment_preference" required>
+                  <option value="">Choose a method</option>
+                  <option>Cash App</option>
+                  <option>Venmo</option>
+                  <option>Cash</option>
+                </select>
+              </label>
+
               <div class="form-status" id="signup-status" role="status" aria-live="polite"></div>
               <button class="btn btn-primary signup-button" id="signup-submit" type="submit">Submit Signup Request</button>
             </form>
             <a class="fallback-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform" target="_blank" rel="noopener">Fallback Google Form</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
+    </div>
+  </div>
 
   <footer>
     <div class="container footer-inner">
@@ -1268,6 +1348,34 @@
       const pricePreview = document.getElementById("signup-price-preview");
       const planSelect = form.elements.service_plan;
       const binCountInput = form.elements.bin_count;
+      const modal = document.getElementById("signup");
+      const openButtons = document.querySelectorAll("[data-open-signup]");
+      const closeButtons = document.querySelectorAll("[data-close-signup]");
+
+      function openSignup(event) {
+        if (event) event.preventDefault();
+        modal.classList.add("is-open");
+        document.body.classList.add("modal-open");
+        form.elements.full_name?.focus();
+      }
+
+      function closeSignup() {
+        modal.classList.remove("is-open");
+        document.body.classList.remove("modal-open");
+      }
+
+      openButtons.forEach((button) => button.addEventListener("click", openSignup));
+      closeButtons.forEach((button) => button.addEventListener("click", closeSignup));
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) closeSignup();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && modal.classList.contains("is-open")) closeSignup();
+      });
+
+      if (window.location.hash === "#signup") {
+        openSignup();
+      }
 
       function monthlyPrice() {
         const plan = planSelect.value;
