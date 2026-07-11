@@ -682,6 +682,77 @@
       font-size: clamp(1rem, 2vw, 1.3rem);
     }
 
+    .native-signup {
+      align-content: start;
+      min-height: 0;
+      text-align: left;
+    }
+
+    .native-signup h3,
+    .native-signup > p {
+      text-align: center;
+    }
+
+    .signup-form {
+      margin-top: 8px;
+    }
+
+    .form-section-title {
+      margin: 6px 0 0;
+      color: var(--green-dark);
+      font-size: 0.85rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .required-note {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .price-preview {
+      padding: 14px;
+      border: 1px solid rgba(76, 164, 11, 0.28);
+      border-radius: var(--radius);
+      color: var(--navy);
+      background: rgba(76, 164, 11, 0.1);
+      font-weight: 900;
+    }
+
+    .form-status {
+      min-height: 24px;
+      border-radius: var(--radius);
+      font-weight: 800;
+    }
+
+    .form-status:not(:empty) {
+      padding: 12px;
+    }
+
+    .form-status.success {
+      color: #14532d;
+      background: #dcfce7;
+    }
+
+    .form-status.error {
+      color: #7f1d1d;
+      background: #fee2e2;
+    }
+
+    .honeypot {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .fallback-link {
+      display: none;
+    }
+
     form {
       display: grid;
       gap: 14px;
@@ -839,7 +910,7 @@
         </div>
         <div class="actions">
           <a class="btn btn-outline" href="sms:4015007436?&body=Hi%2C%20I%27m%20interested%20in%20Good%20Neighbor%20Bin%20Service.">Text</a>
-          <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform" target="_blank" rel="noopener">Sign up</a>
+          <a class="btn btn-primary" href="#signup">Sign up</a>
         </div>
       </div>
     </nav>
@@ -853,7 +924,7 @@
           <h1 id="hero-title">Never forget trash day again.</h1>
           <p class="hero-lede">We take your trash and recycling bins to the curb before pickup and bring them back after collection, every week.</p>
           <div class="actions">
-            <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform" target="_blank" rel="noopener">Get started today</a>
+            <a class="btn btn-primary" href="#signup">Get started today</a>
             <a class="btn btn-secondary" href="tel:4015007436">Call 401-500-7436</a>
             <a class="btn btn-outline" href="mailto:goodneighborbinservice@gmail.com?subject=Good%20Neighbor%20Bin%20Service%20Inquiry&body=Hi%2C%20I%27m%20interested%20in%20weekly%20bin%20service.">Email us</a>
           </div>
@@ -997,7 +1068,7 @@
           <ol class="flow-list">
             <li>Customer visits the website.</li>
             <li>Customer clicks Sign Up.</li>
-            <li>Customer fills out the Google Form.</li>
+            <li>Customer fills out the website signup form.</li>
             <li>Customer chooses a preferred payment method in the form.</li>
             <li>GNBS confirms service area and start date.</li>
             <li>GNBS sends payment instructions directly by text or email.</li>
@@ -1069,10 +1140,107 @@
             </div>
           </div>
 
-          <div class="form-panel signup-panel">
+          <div class="form-panel signup-panel native-signup" id="signup">
             <h3>Ready to join the route?</h3>
             <p>Our quick form sends your request straight to Good Neighbor Bin Service so we can follow up and confirm availability.</p>
-            <a class="btn btn-primary signup-button" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform" target="_blank" rel="noopener">Sign Up With Our Quick Form</a>
+            <p class="required-note">Fields marked with * are required. No payment is due until GNBS confirms your service and start date.</p>
+            <form class="signup-form" id="gnbs-signup-form" novalidate>
+              <input class="honeypot" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+              <div class="form-section-title">Contact</div>
+              <div class="form-row">
+                <label>Full name *
+                  <input name="full_name" autocomplete="name" maxlength="200" required>
+                </label>
+                <label>Phone number *
+                  <input name="phone" autocomplete="tel" inputmode="tel" maxlength="40" required>
+                </label>
+              </div>
+              <label>Email address *
+                <input name="email" autocomplete="email" type="email" maxlength="320" required>
+              </label>
+
+              <div class="form-section-title">Service Address</div>
+              <label>Street address *
+                <input name="street_address" autocomplete="street-address" maxlength="240" required>
+              </label>
+              <div class="form-row">
+                <label>City *
+                  <input name="city" autocomplete="address-level2" maxlength="120" required>
+                </label>
+                <label>State *
+                  <select name="state" required>
+                    <option value="RI">Rhode Island</option>
+                    <option value="MA">Massachusetts</option>
+                  </select>
+                </label>
+              </div>
+              <label>ZIP code *
+                <input name="zip" autocomplete="postal-code" inputmode="numeric" maxlength="20" required>
+              </label>
+
+              <div class="form-section-title">Service Details</div>
+              <div class="form-row">
+                <label>Requested service start date *
+                  <input name="start_date" type="date" required>
+                </label>
+                <label>Trash/recycling pickup day *
+                  <select name="pickup_day" required>
+                    <option value="">Choose a day</option>
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                    <option>Sunday</option>
+                    <option>Not sure</option>
+                  </select>
+                </label>
+              </div>
+              <div class="form-row">
+                <label>Number of bins *
+                  <input name="bin_count" type="number" min="1" max="10" value="2" required>
+                </label>
+                <label>Service plan *
+                  <select name="service_plan" required>
+                    <option value="">Choose a plan</option>
+                    <option value="standard">Standard Plan - $20/month</option>
+                    <option value="senior">Senior Neighbor Plan - $15/month</option>
+                  </select>
+                </label>
+              </div>
+              <label>Payment preference *
+                <select name="payment_preference" required>
+                  <option value="">Choose a method</option>
+                  <option>Cash App</option>
+                  <option>Venmo</option>
+                  <option>Cash</option>
+                </select>
+              </label>
+              <div class="price-preview" id="signup-price-preview">Estimated monthly price appears after you choose a plan.</div>
+
+              <div class="form-section-title">Bin Instructions</div>
+              <label>Bin location *
+                <textarea name="bin_location" maxlength="500" required placeholder="Example: Side of garage"></textarea>
+              </label>
+              <label>Curb placement instructions *
+                <textarea name="curb_placement" maxlength="500" required placeholder="Example: Place near driveway"></textarea>
+              </label>
+              <label>Bin return location *
+                <textarea name="return_location" maxlength="500" required placeholder="Example: Return to side of garage"></textarea>
+              </label>
+              <label>Safety instructions
+                <textarea name="safety_instructions" maxlength="700" placeholder="Gate, dog, stairs, parking, or access notes"></textarea>
+              </label>
+              <label>Additional notes
+                <textarea name="additional_notes" maxlength="1500" placeholder="Anything else you want GNBS to know"></textarea>
+              </label>
+
+              <div class="form-status" id="signup-status" role="status" aria-live="polite"></div>
+              <button class="btn btn-primary signup-button" id="signup-submit" type="submit">Submit Signup Request</button>
+            </form>
+            <a class="fallback-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdte_Bfvd2k3JJRwntGhzYcZCffe4IjplJaGYH5z28v2tioGg/viewform" target="_blank" rel="noopener">Fallback Google Form</a>
           </div>
         </div>
       </div>
@@ -1088,6 +1256,127 @@
       <div>Good neighbors. Better neighborhoods.</div>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const form = document.getElementById("gnbs-signup-form");
+      if (!form) return;
+
+      const endpoint = "https://gnbs-command-center.vercel.app/api/website-signup";
+      const status = document.getElementById("signup-status");
+      const submit = document.getElementById("signup-submit");
+      const pricePreview = document.getElementById("signup-price-preview");
+      const planSelect = form.elements.service_plan;
+      const binCountInput = form.elements.bin_count;
+
+      function monthlyPrice() {
+        const plan = planSelect.value;
+        const bins = Math.max(1, Math.min(10, Number(binCountInput.value || 1)));
+        const base = plan === "senior" ? 15 : plan === "standard" ? 20 : 0;
+        if (!base) return 0;
+        return base + Math.max(0, bins - 2) * 5;
+      }
+
+      function updatePricePreview() {
+        const price = monthlyPrice();
+        pricePreview.textContent = price
+          ? `Estimated monthly price: $${price}. Extra bins after the first 2 add $5 each.`
+          : "Estimated monthly price appears after you choose a plan.";
+      }
+
+      function setStatus(message, type) {
+        status.textContent = message;
+        status.className = `form-status ${type || ""}`.trim();
+      }
+
+      function value(name) {
+        return String(form.elements[name]?.value || "").trim();
+      }
+
+      function validate() {
+        const required = [
+          "full_name",
+          "phone",
+          "email",
+          "street_address",
+          "city",
+          "state",
+          "zip",
+          "start_date",
+          "pickup_day",
+          "bin_count",
+          "service_plan",
+          "payment_preference",
+          "bin_location",
+          "curb_placement",
+          "return_location"
+        ];
+        if (required.some((name) => !value(name))) {
+          return "Please complete all required fields.";
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value("email"))) {
+          return "Please enter a valid email address.";
+        }
+        const phoneDigits = value("phone").replace(/\D/g, "");
+        if (!(phoneDigits.length === 10 || (phoneDigits.length === 11 && phoneDigits.startsWith("1")))) {
+          return "Please enter a valid phone number.";
+        }
+        const bins = Number(value("bin_count"));
+        if (!Number.isInteger(bins) || bins < 1 || bins > 10) {
+          return "Please enter a reasonable number of bins.";
+        }
+        return "";
+      }
+
+      planSelect.addEventListener("change", updatePricePreview);
+      binCountInput.addEventListener("input", updatePricePreview);
+      updatePricePreview();
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const validationError = validate();
+        if (validationError) {
+          setStatus(validationError, "error");
+          return;
+        }
+
+        const payload = Object.fromEntries(new FormData(form).entries());
+        submit.disabled = true;
+        submit.textContent = "Submitting...";
+        setStatus("Submitting your signup request...", "");
+
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+          const result = await response.json().catch(() => ({}));
+
+          if (result.result === "skipped_duplicate") {
+            setStatus(result.message || "We may already have a signup request for this contact or address.", "error");
+            return;
+          }
+          if (!response.ok || result.result !== "imported") {
+            setStatus(result.error || "We could not submit your request right now. Please try again or contact GNBS directly.", "error");
+            return;
+          }
+
+          form.reset();
+          updatePricePreview();
+          setStatus(
+            "Thank you for signing up with Good Neighbor Bin Service! We received your information and will review your request shortly. We'll confirm your service area, requested start date, and send you a welcome text or email with your official start date and payment instructions. No payment is due until your service and start date are confirmed. Thank you for supporting our local veteran-owned father and son business! Good Neighbor Bin Service",
+            "success"
+          );
+        } catch (error) {
+          setStatus("We could not submit your request right now. Please try again or contact GNBS directly.", "error");
+        } finally {
+          submit.disabled = false;
+          submit.textContent = "Submit Signup Request";
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>
