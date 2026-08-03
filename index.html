@@ -174,8 +174,8 @@
 
     .hero {
       background:
-        linear-gradient(90deg, rgba(8, 38, 74, 0.9) 0%, rgba(8, 38, 74, 0.66) 48%, rgba(8, 38, 74, 0.3) 100%),
-        linear-gradient(180deg, rgba(8, 38, 74, 0.08) 0%, rgba(8, 38, 74, 0.48) 100%),
+        linear-gradient(90deg, rgba(8, 38, 74, 0.88) 0%, rgba(8, 38, 74, 0.62) 48%, rgba(8, 38, 74, 0.26) 100%),
+        linear-gradient(180deg, rgba(8, 38, 74, 0.06) 0%, rgba(8, 38, 74, 0.44) 100%),
         url("gnbs-real-service-photo.jpg") center 58% / cover no-repeat;
       color: var(--paper);
       position: relative;
@@ -301,26 +301,6 @@
       border-radius: var(--radius);
       background: rgba(255, 255, 255, 0.1);
       box-shadow: var(--shadow);
-    }
-
-    .hero-photo-card {
-      overflow: hidden;
-      padding: 0;
-      background: rgba(255, 255, 255, 0.16);
-    }
-
-    .hero-photo-card img {
-      width: 100%;
-      height: 520px;
-      object-fit: cover;
-      object-position: 30% center;
-    }
-
-    .hero-photo-caption {
-      padding: 16px 18px;
-      background: rgba(255, 255, 255, 0.94);
-      color: var(--navy);
-      font-weight: 900;
     }
 
     .bin-service-card {
@@ -935,10 +915,6 @@
         margin: 0 auto;
       }
 
-      .hero-photo-card img {
-        height: 420px;
-      }
-
       .grid-4,
       .pricing-grid,
       .payment-grid,
@@ -983,17 +959,9 @@
 
       .hero {
         background:
-          linear-gradient(180deg, rgba(8, 38, 74, 0.82) 0%, rgba(8, 38, 74, 0.58) 52%, rgba(8, 38, 74, 0.78) 100%),
+          linear-gradient(180deg, rgba(8, 38, 74, 0.78) 0%, rgba(8, 38, 74, 0.54) 52%, rgba(8, 38, 74, 0.76) 100%),
           url("gnbs-real-service-photo.jpg") 26% 0 / auto 980px no-repeat,
           var(--navy);
-      }
-
-      .hero-photo-card {
-        width: 100%;
-      }
-
-      .hero-photo-card img {
-        height: 340px;
       }
     }
   </style>
@@ -1047,9 +1015,30 @@
             <div class="proof-item"><strong>Local</strong>Darlington service</div>
           </div>
         </div>
-        <div class="hero-visual hero-photo-card" aria-label="Good Neighbor Bin Service in the neighborhood">
-          <img src="gnbs-real-service-photo.jpg" alt="Good Neighbor Bin Service moving a trash bin in a local neighborhood">
-          <div class="hero-photo-caption">Real weekly bin help from a local father and son team.</div>
+        <div class="hero-visual" aria-label="Weekly bin service summary">
+          <div class="bin-service-card">
+            <div class="bin-service-row">
+              <div class="bin-service-icon">1</div>
+              <div>
+                <strong>We take them out</strong>
+                <span>Trash and recycling bins moved to the curb before pickup.</span>
+              </div>
+            </div>
+            <div class="bin-service-row">
+              <div class="bin-service-icon">2</div>
+              <div>
+                <strong>We bring them back</strong>
+                <span>Bins returned after collection, every week.</span>
+              </div>
+            </div>
+            <div class="bin-service-row">
+              <div class="bin-service-icon">$</div>
+              <div>
+                <strong>Starting at $20/month</strong>
+                <span>Simple local service for up to 2 bins.</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
