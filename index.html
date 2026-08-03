@@ -507,6 +507,29 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+    .community-photo {
+      overflow: hidden;
+      margin-top: 18px;
+      border: 1px solid rgba(219, 228, 239, 0.9);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 12px 28px rgba(8, 38, 74, 0.08);
+    }
+
+    .community-photo img {
+      width: 100%;
+      height: 390px;
+      object-fit: cover;
+      object-position: 30% center;
+    }
+
+    .community-photo-caption {
+      padding: 16px 18px;
+      color: var(--navy);
+      font-weight: 900;
+      border-top: 5px solid var(--green);
+    }
+
     .card,
     .price-card {
       padding: 24px;
@@ -922,6 +945,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .community-photo img {
+        height: 360px;
+      }
+
       section {
         padding: 60px 0;
       }
@@ -962,6 +989,10 @@
           linear-gradient(180deg, rgba(8, 38, 74, 0.78) 0%, rgba(8, 38, 74, 0.54) 52%, rgba(8, 38, 74, 0.76) 100%),
           url("gnbs-real-service-photo.jpg") 26% 0 / auto 980px no-repeat,
           var(--navy);
+      }
+
+      .community-photo img {
+        height: 300px;
       }
     }
   </style>
@@ -1182,6 +1213,10 @@
               <p>Family-operated with pride in the work.</p>
             </article>
           </div>
+          <figure class="community-photo">
+            <img src="gnbs-real-service-photo.jpg" alt="Good Neighbor Bin Service helping with trash bins in a local neighborhood">
+            <figcaption class="community-photo-caption">A real GNBS route moment in the neighborhood.</figcaption>
+          </figure>
         </div>
         <aside class="flyer-panel" aria-label="Flyer preview">
           <img src="gnbs-flyer.png" alt="Good Neighbor Bin Service promotional flyer">
